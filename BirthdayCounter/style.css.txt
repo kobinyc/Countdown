@@ -1,0 +1,43 @@
+image {
+margin: 40px;
+
+}
+
+
+.timerBtn{
+    width: 80px;
+    height: 30px;
+    border: 3px solid;
+    border-radius: 6px;
+    background-color: #333333;
+    color: white;
+    font-family: consolas, monospace;
+    margin: 20px;
+}
+#currentTime{
+    font-size: 75px;
+    color: #FFFFFF;
+    font-family: consolas, monospace;
+}
+
+#timeContainer{
+    text-align: center;
+    border: 3px solid;
+    border-radius: 12px;
+    background-color: #9ecef7;
+}
+
+body{
+	background-image: url("bday.jpg");
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center;
+	background-size: cover;
+}
+
+p {
+
+    color: white;
+    font-family: consolas, monospace;
+    margin: 20px;
+}

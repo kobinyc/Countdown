@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/jpg" href="favicon.jpg">
+    <title> Birthday Countdown </title>
+<style> 
+
+image {
+margin: 40px;
+
+}
+
+
+.timerBtn{
+    width: 80px;
+    height: 30px;
+    border: 3px solid;
+    border-radius: 6px;
+    background-color: #333333;
+    color: white;
+    font-family: consolas, monospace;
+    margin: 20px;
+}
+#currentTime{
+    font-size: 75px;
+    color: #FFFFFF;
+    font-family: consolas, monospace;
+}
+
+#timeContainer{
+    text-align: center;
+    border: 3px solid;
+    border-radius: 12px;
+    background-color: #9ecef7;
+}
+
+body{
+	background-image: url("bday.jpg");
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center;
+	background-size: cover;
+}
+
+p {
+
+    color: white;
+    font-family: consolas, monospace;
+    margin: 20px;
+}
+
+</style>
+</head>
+
+
+<body>
+
+<image src="birthday.jpg" alt="Happy Birthday" align='center'>
+
+    <div id="timeContainer">
+        <div id="currentTime">24:00:00</div>
+        <button id="startButton" class="timerBtn">Start</button>
+        <button id="pauseButton" class="timerBtn">Pause</button>
+        <button id="resetButton" class="timerBtn">Reset</button>
+    </div>
+
+<script> 
+const timer = document.getElementById("currentTime");
+const startButton = document.getElementById("startButton");
+const pauseButton = document.getElementById("pauseButton");
+const resetButton = document.getElementById("resetButton");
+
+// Defining our variables
+let startTime = 0;
+let Overtime = 0;
+let currentTime = 0;
+let paused = true;
+let intervalId;
+let now = Date.now();
+
+// Time variables
+let hours = 24;
+let minutes = 0;
+let seconds = 0;
+
+startButton.addEventListener("click", function () {
+    if (paused) {
+
+        paused = false;
+        Overtime = Date.now() - startTime;
+        intervalId = setInterval(countDown, 1000);
+    }
+});
+
+pauseButton.addEventListener("click", function () {
+    if(!paused){
+        paused = true;
+        Overtime = Date.now() - startTime;
+        clearInterval(intervalId);
+    }
+});
+
+
+resetButton.addEventListener("click", function () {
+    paused = true;
+    clearInterval(intervalId);
+    startTime = 0;
+    Overtime = 0;
+    currentTime = 0;
+    hours = 24;
+    minutes = 0;
+    seconds = 0;
+    timer.textContent = "24:00:00";
+});
+
+function countDown () {
+
+Overtime = Date.now() - Overtime;
+
+
+if (("0" + seconds).length >= 3) { seconds = seconds } else { seconds = "0" + seconds };
+if (("0" + minutes).length >= 3) { minutes = minutes } else { minutes = "0" + minutes };
+if (("0" + hours).length >= 3) { hours = hours } else { hours = "0" + hours }; 
+
+seconds = 60 - Math.floor((Overtime / 1000) % 60 - 1);
+minutes = 59 - Math.floor((Overtime / (1000 * 60)) % 60);
+hours = 24 - Math.floor((Overtime / (1000 * 60 * 60)) % 24);
+
+Overtime = Date.now() - Overtime;
+
+timer.textContent = hours + ":" + minutes + ":" + seconds;
+
+};
+
+</script>
+    
+</body>
+</html>
